@@ -1,0 +1,3 @@
+1001,Homework,5
+1002,Laundry,3
+1003,Grocery,4
