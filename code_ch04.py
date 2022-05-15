@@ -1,11 +1,29 @@
 #####################################################################################
 #
-# 4.1	Retrieving and manipulating subsequences with slice 
+# 4.1	How do I retrieve and manipulate subsequences with slice objects?
 #
 #####################################################################################
 #%%
+# str is a sequence of characters:
+text = "Hello, World!"
+
+# list is a mutable sequence of any kinds of objects
+fruits = ["apple", "orange", "banana", "strawberry"]
+
+# tuple is an immutable sequence of any kinds of objects
+vowels = ("a", "e", "i", "o", "u")
+
+#%%
+assert fruits[1:3] == ["orange", "banana"]
+
+assert fruits[:3] == ["apple", "orange", "banana"]
+
+assert fruits[1:] == ["orange", "banana", "strawberry"]
+
+#%%
 # error is expected
-["apple", "orange"][3]
+fruits[5]
+# ERROR: IndexError: list index out of range
 
 #%%
 numbers = [0, 1, 2, 3, 4, 5]
@@ -106,7 +124,7 @@ numbers
 
 #####################################################################################
 #
-# 4.2	Using positive and negative indexing to retrieve items
+# 4.2	How do I use positive and negative indexing to retrieve items?
 #
 #####################################################################################
 #%%
@@ -136,7 +154,7 @@ revenue_middle
 
 #####################################################################################
 #
-# 4.3	Finding items in a sequence
+# 4.3	How do I find items in a sequence?
 #
 #####################################################################################
 
@@ -218,7 +236,7 @@ print(f"Task Index: {needed_task_index}")
 
 #####################################################################################
 #
-# 4.4	Unpacking a sequence — beyond tuple unpacking
+# 4.4	How do I unpack a sequence — beyond tuple unpacking?
 #
 #####################################################################################
 # %%
@@ -305,7 +323,7 @@ task_id, *_, task_status = task    #A
 
 #####################################################################################
 #
-# 4.5	Using alternative data structures other than lists and tuples
+# 4.5	When should I consider alternative data models other than lists and tuples?
 #
 #####################################################################################
 # %%

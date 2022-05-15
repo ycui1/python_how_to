@@ -1,6 +1,6 @@
 #####################################################################################
 #
-# 3.1	Choosing lists or tuples based on mutability and homogeneity
+# 3.1	How do I choose between lists and tuples?
 #
 #####################################################################################
 #%%
@@ -29,7 +29,51 @@ integers_tuple[0] = 'zero'    #B
 
 #####################################################################################
 #
-# 3.2	Using named tuples as a lightweight data model
+# 3.2	How do I sort lists of complicated data using custom functions?
+#
+#####################################################################################
+#%%
+tasks = [
+    {'title': 'Laundry', 'desc': 'Wash clothes', 'urgency': 3},
+    {'title': 'Homework', 'desc': 'Physics + Math', 'urgency': 5},
+    {'title': 'Museum', 'desc': 'Egyptian things', 'urgency': 2}
+]
+
+#%%
+# expect errors
+tasks.sort()
+
+# %%
+numbers = [12, 4, 1, 3, 7, 5, 9, 8]
+numbers.sort()    #A
+print(numbers)
+# output: [1, 3, 4, 5, 7, 8, 9, 12]
+
+names = ['Danny', 'Aaron', 'Zack', 'Jennifer', 'Mike', 'David']
+names.sort(reverse=True)    #B
+print(names)
+# output: ['Zack', 'Mike', 'Jennifer', 'David', 'Danny', 'Aaron']
+
+mixed = [3, 1, 2, 'John',  ['c', 'd'], ['a', 'b']]
+mixed.sort()
+# error is expected for the above line
+
+#%%
+mixed = [3, 1, 2, 'John',  ['c', 'd'], ['a', 'b']]
+mixed.sort(key=str)
+
+print(mixed)
+
+#%%
+def using_urgency_level(task):
+    return task['urgency']
+
+tasks.sort(key=using_urgency_level, reverse=True)
+print(tasks)
+
+#####################################################################################
+#
+# 3.3	How do I build a lightweight data model using named tuples?
 #
 #####################################################################################
 # %%
@@ -39,6 +83,7 @@ task_tuple = ('Laundry', 'Wash clothes', 3)    #B
 
 task_dict = {'title': 'Laundry', 'desc': 'Wash clothes', 'urgency': 3}    #C
 
+#%%
 class Task:    #D
     def __init__(self, title, desc, urgency):
         self.title = title
@@ -52,6 +97,7 @@ from collections import namedtuple
 
 Task = namedtuple('Task', 'title desc urgency')    #A
 task_nt = Task('Laundry', 'Wash clothes', 3)    #B
+
 assert task_nt.title == 'Laundry'    #C
 assert task_nt.desc == 'Wash clothes'   #C
 
@@ -80,51 +126,7 @@ for task_text in task_data.split('\n'):
 
 #####################################################################################
 #
-# 3.3	Sorting lists using custom functions
-#
-#####################################################################################
-# %%
-numbers = [12, 4, 1, 3, 7, 5, 9, 8]
-numbers.sort()    #A
-print(numbers)
-# output: [1, 3, 4, 5, 7, 8, 9, 12]
-
-names = ['Danny', 'Aaron', 'Zack', 'Jennifer', 'Mike', 'David']
-names.sort(reverse=True)    #B
-print(names)
-# output: ['Zack', 'Mike', 'Jennifer', 'David', 'Danny', 'Aaron']
-
-mixed = [3, 1, 2, 'John',  ['c', 'd'], ['a', 'b']]
-mixed.sort()
-# error is expected for the above line
-
-#%%
-mixed = [3, 1, 2, 'John',  ['c', 'd'], ['a', 'b']]
-mixed.sort(key=str)
-
-print(mixed)
-
-# %%
-tasks = [
-    {'title': 'Laundry', 'desc': 'Wash clothes', 'urgency': 3},
-    {'title': 'Homework', 'desc': 'Physics + Math', 'urgency': 5},
-    {'title': 'Museum', 'desc': 'Egyptian things', 'urgency': 2}
-]
-
-# %%
-tasks.sort()
-# error is expected for the above line
-
-#%%
-def using_urgency_level(task):
-    return task['urgency']
-
-tasks.sort(key=using_urgency_level, reverse=True)
-print(tasks)
-
-#####################################################################################
-#
-# 3.4	Accessing dictionary keys, values, and items
+# 3.4	How do I access dictionary keys, values, and items?
 #
 #####################################################################################
 # %%
@@ -231,13 +233,35 @@ urgencies["Grocery"] = None
 
 #####################################################################################
 #
-# 3.5	Improving lookup efficiency with dictionaries and sets
+# 3.5	When do I use dictionaries and sets instead of lists and tuples?
 #
 #####################################################################################
 #%%
 # errors are expected
 failed_dict = {[0, 2]: "even"}
 failed_set = {{"a": 0}}
+
+#%%
+from timeit import timeit
+
+for count in [10, 100, 1000, 10000, 100000]:
+    setup_str = f"""from random import randint; n = {count}; numbers_set = set(range(n)); numbers_list = list(range(n))"""    #A
+    stmt_set = "randint(0, n-1) in numbers_set"    #B
+    stmt_list = "randint(0, n-1) in numbers_list"    #C
+    t_set = timeit(stmt_set, setup=setup_str, number=10000)    #D
+    t_list = timeit(stmt_list, setup=setup_str, number=10000)    #D
+    print(f"{count: >6}: {t_set:e} vs. {t_list:e}")
+
+#%%
+hash("Hello World!")    #A
+# output: 9222343606437197585
+
+hash(100)
+# output: 100
+
+hash([1, 2, 3])
+# ERROR: TypeError: unhashable type: 'list'
+
 
 # %%
 from collections.abc import Hashable
@@ -258,51 +282,13 @@ text[-1] = "!"
 #%%
 text.replace(".", "!")
 
-#%%
-from timeit import timeit
 
-for count in [10, 100, 1000, 10000, 100000]:
-    setup_str = f"""from random import randint; n = {count}; numbers_set = set(range(n)); numbers_list = list(range(n))"""    #A
-    stmt_set = "randint(0, n-1) in numbers_set"    #B
-    stmt_list = "randint(0, n-1) in numbers_list"    #C
-    t_set = timeit(stmt_set, setup=setup_str, number=10000)    #D
-    t_list = timeit(stmt_list, setup=setup_str, number=10000)    #D
-    print(f"{count: >6}: {t_set:e} vs. {t_list:e}")
 
 #####################################################################################
 #
-# 3.6	Using sets to check the relationships between lists
+# 3.6	How do I use set operations to check the relationships between lists?
 #
 #####################################################################################
-#%%
-tasks_a = {"Homework", "Laundry", "Grocery"}
-tasks_b = {"Laundry", "Gaming"}
-
-
-tasks_a | tasks_b    #A
-# output: {'Laundry', 'Gaming', 'Homework', 'Grocery'}
-
-tasks_a & tasks_b    #B
-# output: {'Laundry'}
-
-tasks_a ^ tasks_b    #C
-# output: {'Homework', 'Grocery', 'Gaming'}
-
-tasks_a - tasks_b    #D
-# output: {'Homework', 'Grocery'}
-
-
-# %%
-small_set = {1, 2}
-large_set = {1, 2, 3, 4}
-
-assert small_set.issubset(large_set) == True
-assert small_set.issuperset(large_set) == False
-
-assert large_set.issubset(small_set) == False
-assert large_set.issuperset(small_set) == True
-
-
 #%%
 good_stocks = ["AAPL", "GOOG", "FB", "NVDA"]
 client0 = ["GOOG", "FB"]
@@ -320,6 +306,8 @@ def all_contained_in_recommended(recommended, personal):
 print(all_contained_in_recommended(good_stocks, client0))
 print(all_contained_in_recommended(good_stocks, client1))
 
+
+
 # %%
 good_stocks_set = set(good_stocks)    #A
 
@@ -330,6 +318,8 @@ print(f"Is {client0} contained in {good_stocks}? {contained0}")
 contained1 = good_stocks_set.issuperset(client1)
 print(f"Is {client1} contained in {good_stocks}? {contained1}")
 # output: Is ['FB', 'SNAP'] contained in ['AAPL', 'GOOG', 'FB', 'NVDA']? False
+
+
 
 # %%
 def contained_any_in_recommended(recommended, personal):
@@ -362,3 +352,34 @@ good_stocks_set.intersection(client0)
 
 good_stocks_set.intersection(client1)
 # output: {'FB'}
+
+#%%
+tasks_a = {"Homework", "Laundry", "Grocery"}
+tasks_b = {"Laundry", "Gaming"}
+
+
+tasks_a | tasks_b    #A
+# output: {'Laundry', 'Gaming', 'Homework', 'Grocery'}
+
+tasks_a & tasks_b    #B
+# output: {'Laundry'}
+
+tasks_a ^ tasks_b    #C
+# output: {'Homework', 'Grocery', 'Gaming'}
+
+tasks_a - tasks_b    #D
+# output: {'Homework', 'Grocery'}
+
+
+# %%
+small_set = {1, 2}
+large_set = {1, 2, 3, 4}
+
+assert small_set.issubset(large_set) == True
+assert small_set.issuperset(large_set) == False
+
+assert large_set.issubset(small_set) == False
+assert large_set.issuperset(small_set) == True
+
+
+
