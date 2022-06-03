@@ -200,6 +200,28 @@ with open("task_dict_saved.pickle", "rb") as file:
 assert task_tuple == task_tuple_loaded
 assert task_dict == task_dict_loaded
 
+#%%
+import pickle
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+    
+task = Task("Laundry", 3)
+with open("task_class_saved.pickle", "wb") as file:
+    pickle.dump(task, file)
+
+with open("task_class_saved.pickle", "rb") as file:
+    task_class_loaded = pickle.load(file)
+
+assert task.__dict__ == task_class_loaded.__dict__
+
+assert task is not task_class_loaded
+
+#%%
+del Task
+with open("task_class_saved.pickle", "rb") as file:
+    task_class_loaded = pickle.load(file)
 
 #%%
 def doubler(x):
@@ -386,12 +408,11 @@ import time
 
 subject_dat_path = Path("data/subject_123.dat")
 
-created_time = subject_dat_path.stat().st_birthtime   #A
+modified_time = subject_dat_path.stat().st_mtime   #A
 
-readable_time = time.ctime(created_time)   #B
+readable_time = time.ctime(modified_time)   #B
 
-print(f"Creation time: {created_time} -> {readable_time}")
+print(f"Modification time: {modified_time} -> {readable_time}")
 
 # output: Creation time: 1652123144.9999998 -> Mon May  9 14:05:44 2022    #C
 
-#%%

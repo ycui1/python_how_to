@@ -636,3 +636,51 @@ def calculate_sum(n):
 
 print(calculate_sum.__name__)
 
+
+
+
+
+
+#%%  section 12.2
+import logging
+
+logger = logging.getLogger(__name__)
+logger.handlers = []
+logger.setLevel(logging.WARNING)
+
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.DEBUG)
+logger.addHandler(stream_handler)
+
+logger.info("It's an info message.")
+logger.warning("It's a warning message.")
+
+
+
+#%%
+# section 13.1
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+    def _report(self):
+        print("report")
+        report = "Urgency: " + self.urgency
+
+    def _send_report(self):
+        print("send report")
+        self._report()
+
+    def _update_db(self):
+        # update the record in the database
+        print("update the database")
+        self._send_report()
+
+        
+    def update_urgency(self, urgency):
+        self.urgency = urgency
+        self._update_db()
+
+task = Task("Laundry", 3)
+task.update_urgency(4)
