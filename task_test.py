@@ -11,6 +11,6 @@ class Task:
         self.urgency = urgency
         self._update_db()
 
-
-task = Task("Laundry", 3)
-task.update_urgency(4)
+if __name__ == "__main__":
+    task = Task("Laundry", 3)
+    task.update_urgency(4)

@@ -4,9 +4,6 @@
 #
 #####################################################################################
 #%%
-from venv import create
-
-
 class Task:
     def __init__(self, title, urgency):
         self.title = title
@@ -132,3 +129,17 @@ class TestTaskCreation(unittest.TestCase):
         task_data = {"title": "Laundry", "urgency": 3}
         created_task = create_task_from_dict(task_data)
         self.assertEqual(created_task.__dict__, self.task_dict)
+
+#####################################################################################
+#
+# 13.4	How do I apply monkey patching to facilitate code development?
+#
+#####################################################################################
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+    def formatted_display(self):
+        displayed_text = f"{self.title} ({self.urgency})"
+        return displayed_text 

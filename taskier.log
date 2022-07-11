@@ -1,3 +1,7 @@
 removed the task Laundry from the database
 Just a random warning event.
-Test message
+--Critical message
+--Error message
+--Warning message
+Failed to save the task to the db
+Can't update the status of the task

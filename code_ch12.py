@@ -34,7 +34,7 @@ class Task:
         self.title = title
 
     def remove_from_db(self):
-        # add the task to the database
+        # operations to remove the task from the database
         task_removed = True
         return task_removed
 
@@ -77,7 +77,7 @@ print(log_records)
 
 #####################################################################################
 #
-# 12.2	How do I categorize and format log records?
+# 12.2	How do I save log records properly?
 #
 #####################################################################################
 #%%
@@ -85,7 +85,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.WARNING)
 
 print(logger.level, logging._levelToName[logger.level])
-print(logger.handlers)
 
 # %%
 def logging_messages_all_levels():
@@ -125,12 +124,15 @@ print(critical_log_records)
 import logging
 
 logger = logging.getLogger(__name__)    #A
+logger.setLevel(logging.DEBUG)    #A
 
-formatter = logging.Formatter("%(asctime)s [%(levelname)s] - %(name)s - %(message)s")   #B
+logger.handlers = []    #B
+
+formatter = logging.Formatter("%(asctime)s [%(levelname)s] - %(name)s - %(message)s")   #C
 
 stream_handler = logging.StreamHandler()
 stream_handler.setLevel(logging.DEBUG)
-stream_handler.setFormatter(formatter)    #C
+stream_handler.setFormatter(formatter)    #D
 logger.addHandler(stream_handler)
 
 def log_some_records():
@@ -235,6 +237,9 @@ def process_task_string3(text):
     return task
 
 process_task_string3("Laundry,3#")
+
+#%%
+process_task_string3("Laudry,3")
 
 #%%
 def process_task_string4(text):

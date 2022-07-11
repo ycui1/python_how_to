@@ -458,5 +458,3 @@ for line in text_data.split("\n"):
 # %%
 match.groupdict()
 # output: {'task_id': '101', 'task_title': 'Homework', 'task_desc': 'Complete physics and math'}
-
-# %%

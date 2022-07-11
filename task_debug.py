@@ -13,4 +13,5 @@ def create_task(inject_bug: bool):
     task = Task(title, urgency)
     return task
 
-create_task(inject_bug=True)
+if __name__ == "__main__":
+    create_task(inject_bug=True)
