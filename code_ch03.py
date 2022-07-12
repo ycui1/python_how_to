@@ -290,9 +290,9 @@ text.replace(".", "!")
 #
 #####################################################################################
 #%%
-good_stocks = ["AAPL", "GOOG", "FB", "NVDA"]
-client0 = ["GOOG", "FB"]
-client1 = ["FB", "SNAP"]
+good_stocks = ["AAPL", "GOOG", "AMZN", "NVDA"]
+client0 = ["GOOG", "AMZN"]
+client1 = ["AMZN", "SNAP"]
 
 # %%
 def all_contained_in_recommended(recommended, personal):
@@ -313,11 +313,11 @@ good_stocks_set = set(good_stocks)    #A
 
 contained0 = good_stocks_set.issuperset(client0)    #B
 print(f"Is {client0} contained in {good_stocks}? {contained0}")
-# output: Is ['GOOG', 'FB'] contained in ['AAPL', 'GOOG', 'FB', 'NVDA']? True
+# output: Is ['GOOG', 'AMZN'] contained in ['AAPL', 'GOOG', 'AMZN', 'NVDA']? True
 
 contained1 = good_stocks_set.issuperset(client1)
 print(f"Is {client1} contained in {good_stocks}? {contained1}")
-# output: Is ['FB', 'SNAP'] contained in ['AAPL', 'GOOG', 'FB', 'NVDA']? False
+# output: Is ['AMZN', 'SNAP'] contained in ['AAPL', 'GOOG', 'AMZN', 'NVDA']? False
 
 
 
@@ -335,23 +335,23 @@ print(contained_any_in_recommended(good_stocks, client1))
 
 # %%
 good_stocks_set & set(client0)
-# output: {'FB', 'GOOG'}
+# output: {'AMZN', 'GOOG'}
 
 bool(good_stocks_set & set(client0))
 # output: True
 
 good_stocks_set & set(client1)
-# output: {'FB'}
+# output: {'AMZN'}
 
 bool(good_stocks_set & set(client1))
 # output: True
 
 #%%
 good_stocks_set.intersection(client0)
-# output: {'FB', 'GOOG'}
+# output: {'AMZN', 'GOOG'}
 
 good_stocks_set.intersection(client1)
-# output: {'FB'}
+# output: {'AMZN'}
 
 #%%
 tasks_a = {"Homework", "Laundry", "Grocery"}

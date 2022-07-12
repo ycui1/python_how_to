@@ -1,3 +1,5 @@
+import traceback
+
 class Task:
     def __init__(self, title, urgency):
         self.title = title
@@ -10,6 +12,7 @@ class Task:
     def update_urgency(self, urgency):
         self.urgency = urgency
         self._update_db()
+        traceback.print_stack()
 
 
 if __name__ == "__main__":
