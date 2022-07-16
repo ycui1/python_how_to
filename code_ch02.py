@@ -14,6 +14,7 @@ urgency = 5
 # Name: Homework; Urgency Level: 5
 
 # %%
+# Listing 2.1 Creating string output using string concatenation
 task = "Name: " + name + "; Urgency Level: " + str(urgency)
 
 print(task)
@@ -237,12 +238,13 @@ print(style_settings)
 # %%
 settings = {"font_size": "large", "font": "Arial",
             "color": "black", "align": "center"}
-styles = f"font-size={settings['font_size']}, "
-f"font={settings['font']}, "
-f"color={settings['color']}, "
-f"align={settings['align']}"  # A
+styles = f"font-size={settings['font_size']}, "\
+    f"font={settings['font']}, "\
+    f"color={settings['color']}, "\
+    f"align={settings['align']}"  # A
 
 # %%
+# listing xx.xx Joining a list in a string with separator
 style_settings = ["font-size=large",
                   "font=Arial", "color=black", "align=center"]
 merged_style = ", ".join(style_settings)
@@ -267,7 +269,7 @@ tasks.remove("Homework")
 print("Remaining Tasks: ", ", ".join(tasks))
 # output: Remaining Tasks:  Grocery, Laundry, Museum Trip
 
-
+# End of listing xx.xx
 # %%
 task_data = """1001,Homework,5
 1002,Laundry,3
@@ -294,6 +296,7 @@ for word in messy_data.split(","):
 # %%
 consolidated = messy_data.replace(",", "_")  # A
 separated_words1 = consolidated.split("_")
+print(separated_words1)
 
 
 #####################################################################################
@@ -305,7 +308,7 @@ separated_words1 = consolidated.split("_")
 
 regex = re.compile(r"[,_]")  # A
 separated_words2 = regex.split(messy_data)
-
+print(separated_words2)
 
 # %%
 
@@ -377,7 +380,7 @@ re.findall(r"[^a]", "abcde")
 # output: ['b', 'c', 'd', 'e']
 
 # %%
-match = re.search(r"(\w\d)+", "xyza2b1c3dd")
+match = re.search(r"(\w\d)+", "xyza2b1c3d4cb")
 
 print(match)
 # output: <re.Match object; span=(3, 9), match='a2b1c3'>
