@@ -111,7 +111,7 @@ x, y, z = data
 print(x, y, z) """
 
 # %%
-
+""" 
 
 from numpy import number
 my_set = {1, 2, 2, 3, 4, 5}
@@ -120,5 +120,33 @@ print(my_set)
 k1: int = "1"
 k2: float = "1.0"
 numbers = {k1: "one", k2: "one point zero"}
-print(numbers)
+print(numbers)"""
+# %%
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+numbers2 = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+print(numbers[::2])
+print(numbers[1::2])
+
+print(numbers2[::2])
+print(numbers2[1::2])
+
+# %%
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(numbers[8:2:-1])
+
+print(numbers[::-1][1:7])
+
+# %%
+pares = sum(list(range(2, 12, 2)))
+print(pares)
+# %%
+numbers = list(range(10))
+
+odd_slice = slice(1, 10, 2)
+print(sum(numbers[odd_slice]))
+
+print(odd_slice)
+
+
 # %%
