@@ -51,7 +51,7 @@ print(my_tupla)
 
 # %%
 
-from numpy import number
+""" from numpy import number
 numbers = ([1, 2], [1, 2])
 print(numbers)
 numbers[0].append(3)
@@ -63,5 +63,62 @@ name = "Alex"
 my_tupla = (age, name)
 
 print(my_tupla[1])
+ """
 
+# %%
+""" 
+from collections import namedtuple
+task_list = ['Laundry', 'Wash clothes', 3]  # A
+task_tuple = ('Laundry', 'Wash clothes', 3)  # B
+task_dict = {'title': 'Laundry', 'desc': 'Wash clothes', 'urgency': 3}  # C
+
+
+class Task:  # D
+    def __init__(self, title, desc, urgency):
+        self.title = title
+        self.desc = desc
+        self.urgency = urgency
+
+
+task_class = Task('Laundry', 'Wash clothes', 3)
+Task = namedtuple('Task', 'title desc urgency')  # A
+task_nt = Task('Laundry', 'Wash clothes', '3')  # B
+Task = namedtuple('Task', 'title, desc, urgency')
+Task = namedtuple('Task', ['title', 'desc', 'urgency'])
+task_data = '''Laundry,Wash clothes,3
+Homework,Physics + Math,5
+Museum,Epyptian things,2'''
+
+for task_text in task_data.split('\n'):  # A
+    print(task_text)
+    print(task_text.split(','))
+    print("-------------------------")
+
+print("==================================")
+for task_text in task_data.split('\n'):  # A
+    title, desc, urgency = task_text.split(',')  # B
+    print(title, desc, urgency)
+
+    #task_nt = Task(title, desc, int(urgency))
+    #print(f"--> {task_nt}")
+
+for task_text in task_data.split('\n'):
+    task_nt = Task._make(task_text.split(','))
+ """
+# %%
+""" data = [1, 2, 3]
+x, y, z = data
+print(x, y, z) """
+
+# %%
+
+
+from numpy import number
+my_set = {1, 2, 2, 3, 4, 5}
+print(my_set)
+# %%
+k1: int = "1"
+k2: float = "1.0"
+numbers = {k1: "one", k2: "one point zero"}
+print(numbers)
 # %%
