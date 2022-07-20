@@ -102,7 +102,6 @@ class Task:  # D
 task_class = Task('Laundry', 'Wash clothes', 3)
 
 # %%
-
 Task = namedtuple('Task', 'title desc urgency')  # A
 task_nt = Task('Laundry', 'Wash clothes', '3')  # B
 
@@ -148,7 +147,7 @@ print(urgen_keys, urgen_values, urgen_items, sep="\n")
 # %%
 urgencies["Grocery Shopping"] = 4
 
-urgen_keys
+print(urgen_keys)
 # output: dict_keys(['Laundry', 'Homework', 'Museum', 'Grocery])
 
 urgen_values
