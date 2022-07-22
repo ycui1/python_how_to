@@ -122,6 +122,9 @@ k2: float = "1.0"
 numbers = {k1: "one", k2: "one point zero"}
 print(numbers)"""
 # %%
+
+
+from ast import Try
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 numbers2 = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -148,5 +151,154 @@ print(sum(numbers[odd_slice]))
 
 print(odd_slice)
 
+for item in numbers[odd_slice]:
+    print(item*item)
+# %%
+numeros = list(range(1, 10))
+print(numeros)
+print(list[2: 10])
+
+
+# %%
+
+# Procedural style
+# line by line
+# uso de sentencias
+# Uso de expresiones
+# funciones extensas
+
+OPERADORES = ('+', '-', '*', '/')
+
+print(OPERADORES)
+
+
+def calculadora_procedural():
+    num1 = leer_numero()
+    operador = leer_operador()
+    num2 = leer_numero()
+    res = calcular(num1, operador, num2)
+    print(f"El resultado es: {res}")
+
+
+def leer_numero():
+    while True:
+        num_str = input('Dame un numero: ')
+        try:
+            return int(num_str)
+        except:
+            print('Captura un número entero')
+
+
+def leer_operador():
+    while True:
+        op = input('Dame la operación [+,-,*,/]: ')
+        if op in OPERADORES:
+            return op
+        print("Operación inválida")
+
+
+def calcular(num1, operador, num2):
+
+    match operador:
+        case '+':
+            return num1+num2
+        case '-':
+            return num1-num2
+        case '*':
+            return num1*num2
+        case '/':
+            return num1/float(num2)
+        case '_':
+            return "No se puede realizar la operación"
+
+
+calculadora_procedural()
+# %%
+
+# Functional style
+# Pocas sentencias (no for)
+# uso extensivo de expresiones
+# Funciones sencillas
+
+OPERADORES = ('+', '-', '*', '/')
+
+print(OPERADORES)
+
+
+def calculadora_funcional():
+    return calcular(
+        leer_numero(),
+        leer_operador(),
+        leer_numero(),
+    )
+
+
+def leer_numero():
+    while True:
+        num_str = input('Dame un numero: ')
+        try:
+            return int(num_str)
+        except:
+            print('Captura un número entero')
+
+
+def leer_operador():
+    while True:
+        op = input('Dame la operación [+,-,*,/]: ')
+        if op in OPERADORES:
+            return op
+        print("Operación inválida")
+
+
+def calcular(num1, operador, num2):
+
+    match operador:
+        case '+':
+            return num1+num2
+        case '-':
+            return num1-num2
+        case '*':
+            return num1*num2
+        case '/':
+            return num1/float(num2)
+        case '_':
+            return "No se puede realizar la operación"
+
+
+print(f"El resultado es: {calculadora_funcional()}")
+
+# %%
+
+OPERADORES = ('+', '-', '*', '/')
+
+print(OPERADORES)
+
+
+def calculadora_funcional():
+    return calcular(
+        leer_numero(),
+        leer_operador(),
+        leer_numero(),
+    )
+
+
+def leer_numero():
+    return int(input('Dame un numero: '))
+
+
+def leer_operador():
+    return input('Dame la operación [+,-,*,/]: ')
+
+
+def calcular(num1, operador, num2):
+
+    return num1+num2 if operador == '+'\
+        else num1-num2 if operador == '-'\
+        else num1*num2 if operador == '*'\
+        else num1/float(num2) if operador == '/'\
+        else "No se puede realizar la operación"
+
+
+print(f"El resultado es: {calculadora_funcional()}")
 
 # %%
