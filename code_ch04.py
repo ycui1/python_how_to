@@ -233,18 +233,58 @@ tasks = [
 ]
 
 # %%
+
+
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+
+tasks = [
+    Task("Laundry", 3),
+    Task("Museum", 4),
+    Task("Homework", 5),
+    Task("Ticket", 2)
+]
+
 needed_urgency = 5
 needed_task_index = None
 
 for task_i in range(len(tasks)):  # A
     task = tasks[task_i]
+    print(task.urgency)
     if task.urgency == needed_urgency:
         needed_task_index = task_i
         break
 
 print(f"Task Index: {needed_task_index}")
 
+# %%
 
+
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+
+tasks = [
+    Task("Laundry", 3),
+    Task("Museum", 4),
+    Task("Homework", 5),
+    Task("Ticket", 2)
+]
+
+needed_urgency = 5
+needed_task_index = None
+
+for task_i in range(len(tasks)):  # A
+    if tasks[task_i].urgency == needed_urgency:
+        needed_task_index = task_i
+        break
+
+print(f"Task Index: {needed_task_index}")
 #####################################################################################
 #
 # 4.4	How do I unpack a sequence — beyond tuple unpacking?
@@ -293,8 +333,11 @@ highest0 = player_scores[-1]
 final0 = sum(middles0) / len(middles0)
 
 # %%
-# expect an error here
-lowest1, middles1, highest1 = player_scores
+player_scores = [6.1, 6.5, 6.8, 7.1, 7.3, 7.6, 8.2, 8.9]
+lowest1, middles1, highest1 = player_scores[0], player_scores[1:-
+                                                              1], player_scores[-1]
+final1 = sum(middles1) / len(middles1)
+print(final1)
 # %%
 lowest2, *middles2, highest2 = player_scores  # A
 final2 = sum(middles2) / len(middles2)

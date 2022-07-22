@@ -302,3 +302,24 @@ def calcular(num1, operador, num2):
 print(f"El resultado es: {calculadora_funcional()}")
 
 # %%
+
+
+def cuad(n):
+    return n*n
+
+
+n1, n2 = cuad(
+    cuad(4)
+), 5
+print(n1, n2)
+# %%
+start, end, *nums = [1, 10, 2, 3, 4, 5, 6, 7, 8]
+print(f"Start: {start}")
+print(f"End: {end}")
+print(f"Values: {nums}")
+
+# %%
+*nums, start, end = [2, 3, 4, 5, 6, 7, 8, 1, 10]
+print(f"Start: {start}")
+print(f"End: {end}")
+print(f"Values: {nums}")
