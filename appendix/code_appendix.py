@@ -39,6 +39,7 @@ assert fruits.rsplit(",", 3) == ['apple,orange', 'pineapple', 'cherry', 'waterme
 data_to_split = "abc_,abc__,abc,,__abc_,_abc"
 
 import re
+from typing import Type, final
 pattern = r"[,_]+"
 splitted = re.split(pattern, data_to_split)
 print(splitted)
@@ -637,11 +638,104 @@ def calculate_sum(n):
 print(calculate_sum.__name__)
 
 
+#%% Answer to section 11.1
+
+list_data = [
+    '1001,Homework,5', 
+    '1002,Laundry,3', 
+    '1003,Grocery,4'
+]
+
+updated_list_data = [f"{x}\n" for x in list_data]
 
 
+with open("tasks_list_write.txt", "w") as file:
+    file.writelines(updated_list_data)
+
+with open("tasks_list_write.txt") as file:
+    print(file.read())
 
 
-#%%  section 12.2
+#%% Answer to section 11.2
+tasks = [
+    ['1001', 'Homework', '5'],
+    ['1002', 'Laundry', '3'],
+    ['1003', 'Grocery', '4']
+]
+
+import csv
+
+with open("tasks_writer.txt", "w", newline="") as file:
+    csv_writer = csv.writer(file)
+    csv_writer.writerows(tasks)
+
+#%% Answer to section 11.3
+
+import os
+
+class MaliciousTask:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+    def __reduce__(self):
+        print("__reduce__ is called")
+        return os.system, ('rm hacking.txt',)
+
+#%% Answer to section 11.4
+from pathlib import Path
+import shutil
+
+shutil.rmtree("subjects")    
+
+subject_ids = [123, 124, 125]
+data_folder = Path("data")
+
+for subject_id in subject_ids:
+    subject_folder = Path(f"subjects/subject_{subject_id}")
+    subject_folder.mkdir(parents=True, exist_ok=True)
+    
+    for subject_file in data_folder.glob(f"*{subject_id}*"):
+        filename = subject_file.name
+        target_path = subject_folder / filename
+        if not target_path.exists():
+            _ = shutil.copy(subject_file, target_path)
+            print(f"Copying {filename} to {target_path}") 
+        else:
+            print(f"{filename} already exists at {target_path}")
+
+
+#%% Answer to section 11.5
+from pathlib import Path
+import time
+
+def select_recent_files_24h(directory):
+    dir_path = Path(directory)
+    current_time = time.time()
+    time_cutoff = current_time - 24 * 3600
+    good_files = []
+    for file_path in dir_path.glob("*"):
+        file_time = file_path.stat().st_birthtime
+        if time_cutoff <= file_time <= current_time:
+            good_files.append(file_path)
+
+    return good_files
+
+#%% Answer to section 12.1
+import logging
+
+logger = logging.getLogger(__name__)
+
+if not logger.hasHandlers():
+    file_handler = logging.FileHandler("taskier.log")
+    logger.addHandler(file_handler)
+
+# remove all handlers
+print(logger.handlers)
+logger.handlers.clear()
+print(logger.handlers)
+
+#%%  Answer to section 12.2
 import logging
 
 logger = logging.getLogger(__name__)
@@ -655,10 +749,57 @@ logger.addHandler(stream_handler)
 logger.info("It's an info message.")
 logger.warning("It's a warning message.")
 
+#%% Answer to section 12.3
+urgency = int("3#")
+
+#%% Asnwer to section 12.4
+from collections import namedtuple
+Task = namedtuple("Task", ["title", "urgency"])
+
+def process_task_challenge(text):
+    title, urgency_str = text.split(",")
+    try:
+        urgency = int(urgency_str)
+        task = Task(title, urgency)
+        return task
+    except ValueError as ex:
+        print(f"Couldn't cast the number. Description: {ex}")
+        return None
+    finally:
+        print(f"Done processing text: {text}")
+        return "finally"
+
+processed = process_task_challenge("Laundry,3")
+print(processed)
+
+#%% Answer to section 12.5
+class Task:
+    def __init__(self, title):
+        if isinstance(title, str):
+            self.title = title
+        else:
+            raise TypeError("Please instantiate the Task using string as its title")
+
+
+def create_task(task_title):  
+    try:
+        print(f"Trying to process {task_title}")
+        task = Task(task_title)
+    except TypeError as e:
+        print(f"Couldn't create the task, error: {e}")
+    else:
+        print(f"Created task: {task}")
+    finally:
+        print(f"Done processing {task_title}")
+
+
+create_task(100)
+create_task("Laundry")
+
 
 
 #%%
-# section 13.1
+# Answer to Section 13.1
 class Task:
     def __init__(self, title, urgency):
         self.title = title
