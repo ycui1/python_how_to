@@ -60,7 +60,7 @@ create_task(inject_bug=False)
 
 #####################################################################################
 #
-# 13.3	How do I test my program automatically?
+# 13.3	How do I test my functions automatically?
 #
 #####################################################################################
 #%%
@@ -132,14 +132,14 @@ class TestTaskCreation(unittest.TestCase):
 
 #####################################################################################
 #
-# 13.4	How do I apply monkey patching to facilitate code development?
+# 13.4	How do I test a class automatically?
 #
 #####################################################################################
-class Task:
-    def __init__(self, title, urgency):
-        self.title = title
-        self.urgency = urgency
+# class Task:
+#     def __init__(self, title, urgency):
+#         self.title = title
+#         self.urgency = urgency
 
-    def formatted_display(self):
-        displayed_text = f"{self.title} ({self.urgency})"
-        return displayed_text 
+#     def formatted_display(self):
+#         displayed_text = f"{self.title} ({self.urgency})"
+#         return displayed_text 
