@@ -825,3 +825,86 @@ class Task:
 
 task = Task("Laundry", 3)
 task.update_urgency(4)
+
+#%% Answer to section 13.2
+# No Python code, see the answer in the Appendix F
+
+#%% Answer to section 13.3
+# You need to place them in a separate file and test it using the command line tool as shown in section 13.3
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+def create_task_from_tuple(task_tuple):
+    title, urgency = task_tuple
+    task = Task(title, urgency)
+    return task
+
+import unittest
+
+class TestTaskCreation(unittest.TestCase):
+    def setUp(self):
+        task_to_compare = Task("Laundry", 3)
+        self.task_dict = task_to_compare.__dict__
+
+    def test_create_task_from_tuple(self):
+        task_tuple = ("Laundry", 3)
+        created_task = create_task_from_tuple(task_tuple)
+        self.assertEqual(created_task.__dict__, self.task_dict)
+
+
+#%% Answer to section 13.4
+# Save the following class in the task_class.py
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
+
+    def formatted_display(self):
+        displayed_text = f"{self.title} ({self.urgency})"
+        raise TypeError("This is a TypeError")
+        # the next return statement will be skipped due to raising an exception
+        return displayed_text
+
+#%% Answer to section 14.2
+# the following function is taken from the Task class, expects it not to work by itself
+def delete_from_db(self):
+        """Delete the record from the database
+        """
+        if app_db == TaskierDBOption.DB_CSV.value:
+            with open(app_db, "r+") as file:
+                lines = file.readlines()
+                found_record = False
+                for line in lines:
+                    if line.startswith(self.task_id):
+                        found_record = True
+                        lines.remove(line)
+                        break
+                if not found_record:
+                    raise Exception("Record not found error.")
+                else:
+                    file.seek(0)
+                    file.truncate()
+                    file.writelines(lines)
+
+#%% Answer to section 14.3
+import functools
+import time
+
+def logging_time_wraps(func):
+    @functools.wraps(func)
+    def logger(*args, **kwargs):
+        """Log the time"""
+        print(f"--- {func.__name__} starts")
+        start_t = time.time()
+        value_returned = func(*args, **kwargs)
+        end_t = time.time()
+        print(f"*** {func.__name__} ends; used time: {end_t - start_t:.10f} s")
+        return value_returned
+
+    return logger
+
+#%% Answer to section 14.4
+numbers = {0: "zero", 1: "one", 2: "two"}
+assert list(numbers) == list(numbers.keys())

@@ -1,0 +1,12 @@
+README.md
+setup.py
+howtotaskier/__init__.py
+howtotaskier/taskier.py
+howtotaskier/taskier_app.py
+howtotaskier/taskier_app_helper.py
+howtotaskier/taskier_helper.py
+howtotaskier_ycui.egg-info/PKG-INFO
+howtotaskier_ycui.egg-info/SOURCES.txt
+howtotaskier_ycui.egg-info/dependency_links.txt
+howtotaskier_ycui.egg-info/requires.txt
+howtotaskier_ycui.egg-info/top_level.txt

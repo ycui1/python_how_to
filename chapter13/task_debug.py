@@ -14,4 +14,4 @@ def create_task(inject_bug: bool):
     return task
 
 if __name__ == "__main__":
-    create_task(inject_bug=True)
+    create_task(inject_bug=False)

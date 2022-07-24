@@ -19,4 +19,6 @@ class Task:
 
     def formatted_display(self):
         displayed_text = f"{self.title} ({self.urgency})"
+        raise TypeError("This is a TypeError")
+        # the next return statement will be skipped due to raising an exception
         return displayed_text

@@ -135,11 +135,12 @@ class TestTaskCreation(unittest.TestCase):
 # 13.4	How do I test a class automatically?
 #
 #####################################################################################
-# class Task:
-#     def __init__(self, title, urgency):
-#         self.title = title
-#         self.urgency = urgency
+class Task:
+    def __init__(self, title, urgency):
+        self.title = title
+        self.urgency = urgency
 
-#     def formatted_display(self):
-#         displayed_text = f"{self.title} ({self.urgency})"
-#         return displayed_text 
+    def formatted_display(self):
+        displayed_text = f"{self.title} ({self.urgency})"
+        raise TypeError()
+        return displayed_text 

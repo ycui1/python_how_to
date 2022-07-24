@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: howtotaskier-ycui
+Version: 0.4
+Summary: This is a task management app.
+Home-page: https://github.com/ycui1/python_how_to
+Author: Yong Cui
+Author-email: yong.cui01@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+**We can use the taskier app to manage our daily tasks.**
+
+## License
+MIT License
