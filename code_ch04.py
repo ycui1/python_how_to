@@ -5,6 +5,7 @@
 #####################################################################################
 # %%
 # str is a sequence of characters:
+from timeit import timeit
 from timeit import timeit  # B
 from collections import deque  # A
 from collections import deque
@@ -429,3 +430,5 @@ def connect_to_associate(associate):
         print(f"out: Remove {client_to_connect}, connecting to {associate}.")
     else:
         print("No more clients are waiting.")
+
+# %%

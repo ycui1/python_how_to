@@ -1,3 +1,7 @@
+# %%
+from ast import Try
+from collections import namedtuple
+
 """ def cast_number(number_str):
     try:
         casted_number = float(number_str)
@@ -124,7 +128,6 @@ print(numbers)"""
 # %%
 
 
-from ast import Try
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 numbers2 = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -323,3 +326,31 @@ print(f"Values: {nums}")
 print(f"Start: {start}")
 print(f"End: {end}")
 print(f"Values: {nums}")
+
+# %%
+numbers = [i for i in range(1, 4)]
+squares1 = [i*i for i in numbers]
+print(squares1)
+
+squares2 = [i*i for i in [i for i in range(1, 4)]]
+print(squares2)
+
+
+def square(n):
+    return n*n
+
+
+squares3 = [square(i) for i in [i for i in range(1, 4)]]
+print(squares3)
+
+# %%
+
+Task = namedtuple("Task title description urgency")
+tasks = [
+    Task("Homework", "Physics and math", 5),
+    Task("Laundry", "Wash clothes", 3),
+    Task("Museum", "Egypt exhibit", 4)
+]
+tasks
+
+# %%
