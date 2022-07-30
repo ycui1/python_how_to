@@ -1,11 +1,27 @@
-#%% Answer to section 2.1
+# %% Answer to section 2.1
+import numpy as np
+from collections import namedtuple
+import re
+from copy import copy
+import logging
+import random
+import sys
+from collections.abc import Iterable
+import json
+from dataclasses import dataclass, field
+from enum import Enum
+from functools import partial
+import time
+import functools
+from time import sleep
+from datetime import datetime
 selected_a = "orange"
 selected_b = "apple"
 
 selected = f"Selected fruits: {{{selected_a}, {selected_b}}}"
 assert selected == "Selected fruits: {orange, apple}"
 
-#%% Answer to section 2.2
+# %% Answer to section 2.2
 x = input("What's today's temperature in your area?")
 x_num = float(x)
 if x_num < 10:
@@ -31,14 +47,16 @@ x_output = f"You entered {x_num:.1f} degrees. It's {x_whether}!"
 print(x_output)
 # %% Answer to section 2.3
 fruits = "apple,orange,pineapple,cherry,watermelon"
-assert fruits.split(",") == fruits.split(",", 10) == fruits.rsplit(",") == fruits.rsplit(",", 10)
+assert fruits.split(",") == fruits.split(
+    ",", 10) == fruits.rsplit(",") == fruits.rsplit(",", 10)
 
-assert fruits.split(",", 3) == ['apple', 'orange', 'pineapple', 'cherry,watermelon']
-assert fruits.rsplit(",", 3) == ['apple,orange', 'pineapple', 'cherry', 'watermelon']
+assert fruits.split(",", 3) == ['apple', 'orange',
+                                'pineapple', 'cherry,watermelon']
+assert fruits.rsplit(",", 3) == ['apple,orange',
+                                 'pineapple', 'cherry', 'watermelon']
 # %%
 data_to_split = "abc_,abc__,abc,,__abc_,_abc"
 
-import re
 pattern = r"[,_]+"
 splitted = re.split(pattern, data_to_split)
 print(splitted)
@@ -53,7 +71,6 @@ some random nonsense
 1234, random; record
 Another random record"""
 
-import re
 pattern = r"(\d{3}), (\w+); (.+)\n"
 splitted = re.findall(pattern, text_data)
 print(splitted)
@@ -62,24 +79,25 @@ pattern = r"(?<!\d)(\d{3}), (\w+); (.+)\n"
 splitted = re.findall(pattern, text_data)
 print(splitted)
 
-#%% Answer to section 3.2
+# %% Answer to section 3.2
 tasks = [
     {'title': 'Laundry', 'desc': 'Wash clothes', 'urgency': 3},
     {'title': 'Homework', 'desc': 'Physics + Math', 'urgency': 5},
     {'title': 'Museum', 'desc': 'Egyptian things', 'urgency': 2}
 ]
 
+
 def using_by_desc_len(task):
     return len(task["desc"])
+
 
 tasks.sort(key=using_by_desc_len, reverse=True)
 print(tasks)
 
 # using a lambda function
-tasks.sort(key=lambda x:len(x["desc"]), reverse=True)
+tasks.sort(key=lambda x: len(x["desc"]), reverse=True)
 
-#%% Answer to section 3.3
-from collections import namedtuple
+# %% Answer to section 3.3
 
 Task = namedtuple("Task", "title desc urgency")
 task = Task(title='Laundry', desc='Wash clothes', urgency=3)
@@ -104,7 +122,7 @@ assert hash(1) == hash(1.0) == 1
 numbers = {1: "one", 1.0: "one point one"}
 print(numbers)
 
-#%% Answer to section 3.6
+# %% Answer to section 3.6
 assert ({1, 2, 3} or {4, 5, 6}) == {1, 2, 3}
 assert (False or []) == []
 assert ("Hello" or "World") == "Hello"
@@ -113,7 +131,7 @@ assert ({1, 2, 3} and {4, 5, 6}) == {4, 5, 6}
 assert (False and []) == False
 assert ("Hello" and "World") == "World"
 
-#%% Answer to section 4.1
+# %% Answer to section 4.1
 num_list = [1, 2, 3, 4]
 num_tuple = (1, 2, 3, 4)
 num_str = "1234"
@@ -128,7 +146,9 @@ print(num_range[:2])
 revenue_by_month = [95, 100, 80, 93, 92, 110, 102, 88, 96, 98, 115, 120]
 assert revenue_by_month[-2] == revenue_by_month[len(revenue_by_month) - 2]
 
-#%% Answer to section 4.3
+# %% Answer to section 4.3
+
+
 class Task:
     def __init__(self, title, urgency):
         self.title = title
@@ -148,13 +168,13 @@ tasks = [
 task_to_search = Task("Homework", 5)
 print(tasks.index(task_to_search))
 
-#%% Answer to section 4.4
+# %% Answer to section 4.4
 data_to_unpack = [1, (2, 3), 4]
 
 a, (b, c), d = data_to_unpack
 print(a, b, c, d)
 
-#%% Answer to section 4.5
+# %% Answer to section 4.5
 numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
 print(numbers * 3)
 
@@ -171,7 +191,6 @@ print(numbers_multipled)
 numbers_multiplied2 = [x*3 for number_list in numbers for x in number_list]
 assert number_multiplied == number_multiplied
 
-import numpy as np
 numbers_array = np.array(numbers)
 print(numbers_array * 3)
 # %% Answer to section 5.1
@@ -187,12 +206,12 @@ numbers_more = [3, 4, 5, 6]
 for item in zip(numbers_fewer, numbers_more):
     print(item)
 
-#%% Answer to section 5.2
+# %% Answer to section 5.2
 numbers = [1, 2, 3]
 numbers_gen = (x*x for x in numbers)
 print(type(numbers_gen))
 
-#%% Answer to section 5.3
+# %% Answer to section 5.3
 numbers = {"one": 1, "two": 2}
 for key in numbers.keys():
     print(key)
@@ -206,8 +225,7 @@ for key, value in numbers.items():
 for key in numbers:
     print(key)
 
-#%% Answer to section 5.4
-from collections import namedtuple
+# %% Answer to section 5.4
 
 Task = namedtuple("Task", "title, description, urgency")
 
@@ -239,25 +257,26 @@ for task in tasks:
 
 print(first_urgent_task2)
 
-#%% Answer to section 6.1
-from datetime import datetime
-from time import sleep
+# %% Answer to section 6.1
+
 
 def set_start_time(time=datetime.today()):
     print(f"Time: {time}")
+
 
 for _ in range(3):
     set_start_time()
     sleep(1.0)
 
 # %% Answer to section 6.2
-from collections import namedtuple
 
 Coordinate = namedtuple("Coordinate", ["latitude", "longitude"])
+
 
 def locate_me():
     # look up the user's current location
     return coordinate0
+
 
 def locate_home():
     # look up the user's home location
@@ -267,14 +286,19 @@ def locate_home():
 def locate_work():
     # look up the user's work location
     return coordinate2
- 
-#%% Answer to section 6.3
+
+# %% Answer to section 6.3
+
+
 def run_computation(numbers: list[int | str]):
     pass
 
-#%% Answer to section 6.4
+# %% Answer to section 6.4
+
+
 def example(**kwargs):
     pass
+
 
 example(a=1, b=2)
 
@@ -284,7 +308,9 @@ example(2a=1, 2b=2)
 
 example()
 
-#%% Answer to section 6.5
+# %% Answer to section 6.5
+
+
 def quotient(dividend, divisor, taking_int=False):
     """
     Calculate the product of two numbers with a base factor.
@@ -297,11 +323,11 @@ def quotient(dividend, divisor, taking_int=False):
 
     Returns: 
       float | int, the quotient of the dividend and divisor
-    
+
     Raises:
       ZeroDivisionError, when the divisor is 0
     """
-    
+
     if divisor == 0:
         raise ZeroDivisionError("division by zero")
     result = dividend / divisor
@@ -309,17 +335,22 @@ def quotient(dividend, divisor, taking_int=False):
         result = int(result)
     return result
 
-#%% Answer to section 7.1
-add_five = lambda x: x + 5
+
+# %% Answer to section 7.1
+def add_five(x): return x + 5
+
+
 print(add_five.__name__)
+
 
 def add_ten(x):
     return x + 10
+
+
 print(add_ten.__name__)
 
-#%% Answer to section 7.3
-import functools
-import time
+# %% Answer to section 7.3
+
 
 def logging_time_app(app_name):
     def decorator(func):
@@ -330,38 +361,46 @@ def logging_time_app(app_name):
             start_t = time.time()
             value_returned = func(*args, **kwargs)
             end_t = time.time()
-            print(f"{app_name} *** {func.__name__} ends; used time: {end_t - start_t:.2f} s")
+            print(
+                f"{app_name} *** {func.__name__} ends; used time: {end_t - start_t:.2f} s")
             return value_returned
 
         return logger
 
     return decorator
 
+
 @logging_time_app("Task Tracker")
 def example_app():
     pass
 
+
 example_app()
 
-#%% Answer to section 7.4
+# %% Answer to section 7.4
+
+
 def fibonacci(n):
     a, b = 0, 1
     while a < n:
         yield a
         a, b = b, a + b
 
+
 below_fiften = fibonacci(15)
 numbers = list(below_fiften)
 print(numbers)
 
-#%% Answer to section 7.5
-from functools import partial
+# %% Answer to section 7.5
+
 
 def run_stats_model(dataset, model, output_path):
     calculated_stats = 123
     return calculated_stats
 
-run_stats_model_a = partial(run_stats_model, model="model_a", output_path="project_a/stats/")
+
+run_stats_model_a = partial(
+    run_stats_model, model="model_a", output_path="project_a/stats/")
 
 print(dir(run_stats_model_a))
 
@@ -371,6 +410,8 @@ print(run_stats_model_a.args)
 
 print(run_stats_model_a.keywords)
 # %% Answer to section 8.1
+
+
 class Task:
     def __init__(self, title, desc, urgency, tags=None):
         self.title = title
@@ -381,6 +422,7 @@ class Task:
         else:
             self.tags = tags
 
+
 class Task:
     def __init__(self, title, desc, urgency, tags=None):
         self.title = title
@@ -389,7 +431,7 @@ class Task:
         self.tags = [] if tags is None else tags
 
 
-#%% Answer to section 8.2
+# %% Answer to section 8.2
 class Task:
     def __init__(self, title, desc, urgency):
         self.title = title
@@ -402,6 +444,8 @@ class Task:
         return cls(title, desc, urgency)
 
 # %% Asnwer to section 8.3
+
+
 class Task:
     def __init__(self, title, desc, urgency):
         self.title = title
@@ -420,7 +464,7 @@ class Task:
             raise ValueError("Can't set a value outside of 1 - 5")
 
 
-#%% Asnwer to section 8.4
+# %% Asnwer to section 8.4
 class Task:
     def __init__(self, title, desc, urgency):
         self.title = title
@@ -430,19 +474,23 @@ class Task:
     def __repr__(self):
         return f"{self.__class__.__name__}({self.title!r}, {self.desc!r}, {self.urgency})"
 
-#%% Answer to section 8.5
+# %% Answer to section 8.5
+
+
 class Employee:
     def __init__(self, name, employee_id):
         self.name = name
         self.employee_id = employee_id
+
 
 class Supervisor:
     def __init__(self, name, employee_id, subordinates):
         super().__init__(name, employee_id)
         self.subordinates = subordinates
 
-#%% Answer to section 9.1
-from enum import Enum
+
+# %% Answer to section 9.1
+
 
 class Direction(Enum):
     NORTH = 0
@@ -460,8 +508,9 @@ class Direction(Enum):
             message = "Wrong input for direction"
         print(message)
 
-#%% Answer to section 9.2
-from dataclasses import dataclass, field
+
+# %% Answer to section 9.2
+
 
 @dataclass
 class Bill:
@@ -472,7 +521,7 @@ class Bill:
     dishes: field(default_factory=list)
 
 
-#%% Answer to section 9.3
+# %% Answer to section 9.3
 class Account:
     def __init__(self, student_id):
         self.student_id = student_id
@@ -515,15 +564,15 @@ class Demographics:
         return age
 
 
-#%% Answer to section 9.4
-from collections import namedtuple
+# %% Answer to section 9.4
 User = namedtuple("User", "first_name last_name age")
 user = User("John", "Smith", "39")
 
-import json
 print(json.dumps(user))
 
-#%% Answer to section 9.5
+# %% Answer to section 9.5
+
+
 class ClientV0:
     def __init__(self, first_name, last_name, middle_initial='-'):
         self.first_name = first_name
@@ -541,6 +590,7 @@ class ClientV1:
     def initials(self):
         return self.first_name[0] + self.middle_initial + self.last_name[0]
 
+
 class ClientV2:
     def __init__(self, first_name, last_name, middle_initial='-'):
         self.first_name = first_name
@@ -551,8 +601,10 @@ class ClientV2:
     def initials(self):
         return self.first_name[0] + self.middle_initial + self.last_name[0]
 
-#%% Answer to section 10.1
-from collections.abc import Iterable
+
+# %% Answer to section 10.1
+
+
 def is_iterable(obj):
     if isinstance(obj, Iterable):
         outcome = "is an iterable"
@@ -560,27 +612,34 @@ def is_iterable(obj):
         outcome = "is not an iterable"
     print(type(obj), outcome)
 
+
 is_iterable([1, 2, 3])
 is_iterable((404, "Data"))
 is_iterable("abc")
 is_iterable(456)
 
-#%% Answer to section 10.2
-import sys
+# %% Answer to section 10.2
+
 
 class Task:
     def __init__(self, title):
         self.title = title
 
+
 task = Task("Homework")
+
+
 def get_detail(obj):
     print(sys.getrefcount(obj))
 
+
 get_detail(task)
 
-#%% Answer to section 10.3
+# %% Answer to section 10.3
+
+
 class Task:
-    def __init__(self, title, desc, tags = None):
+    def __init__(self, title, desc, tags=None):
         self.title = title
         self.desc = desc
         self.tags = [] if tags is None else tags
@@ -592,7 +651,7 @@ class Task:
         new_task = self.__class__(new_title, new_desc, new_tags)
         return new_task
 
-from copy import copy
+
 task = Task("Homework", "Math and physics", ["school", "urgent"])
 new_task = copy(task)
 print(new_task.__dict__)
@@ -602,8 +661,7 @@ print(task.tags)
 
 print(new_task.tags)
 
-#%% Answer to section 10.4
-import random
+# %% Answer to section 10.4
 whether = "sunny"
 if random.randint(1, 100) % 2:
     whether = "cloudy"
@@ -612,13 +670,13 @@ else:
 
 print(whether)
 
-#%% Answer to section 10.5
-import time
-import functools
+# %% Answer to section 10.5
+
 
 class TimeLogger:
     def __init__(self, func):
         functools.update_wrapper(self, func)
+
         def logger(*args, **kwargs):
             start = time.time()
             result = func(*args, **kwargs)
@@ -629,6 +687,7 @@ class TimeLogger:
     def __call__(self, *args, **kwargs):
         return self._logger(*args, **kwargs)
 
+
 @TimeLogger
 def calculate_sum(n):
     return sum(range(n))
@@ -637,12 +696,7 @@ def calculate_sum(n):
 print(calculate_sum.__name__)
 
 
-
-
-
-
-#%%  section 12.2
-import logging
+# %%  section 12.2
 
 logger = logging.getLogger(__name__)
 logger.handlers = []
@@ -656,8 +710,7 @@ logger.info("It's an info message.")
 logger.warning("It's a warning message.")
 
 
-
-#%%
+# %%
 # section 13.1
 class Task:
     def __init__(self, title, urgency):
@@ -677,10 +730,10 @@ class Task:
         print("update the database")
         self._send_report()
 
-        
     def update_urgency(self, urgency):
         self.urgency = urgency
         self._update_db()
+
 
 task = Task("Laundry", 3)
 task.update_urgency(4)

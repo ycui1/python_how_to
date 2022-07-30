@@ -345,12 +345,41 @@ print(squares3)
 
 # %%
 
-Task = namedtuple("Task title description urgency")
+Task = namedtuple("Task", "title description" "urgency")
 tasks = [
     Task("Homework", "Physics and math", 5),
     Task("Laundry", "Wash clothes", 3),
     Task("Museum", "Egypt exhibit", 4)
 ]
 tasks
+
+# %%
+nums = [3, 1, 5, 4, 7, 8, 9]
+for i, item in enumerate(nums, start=1):
+    print(f"1:{i}*{item}={i*item}")
+
+for i, item in enumerate(range(1, 10), start=1):
+    print(f"2:{i}*{item}={i*item}")
+
+for i in range(1, 11):
+    print(f"3:{i}*{i}={i*i}")
+
+# %%
+
+
+def sumar(a, b=1):
+    return a+b
+
+
+print(sumar.__defaults__)
+# %%
+
+
+def no_return():
+    pass
+
+
+res = no_return()
+print(res)
 
 # %%

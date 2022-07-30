@@ -25,6 +25,7 @@ class Task:  # A
         self.title = title
         self.description = description
         self.urgency = urgency
+        self.status = None
 
 
 def complete_task(task):
@@ -32,9 +33,11 @@ def complete_task(task):
     print(f"{task.title}'s status: completed")
     task.name = "tarea de prueba"
     print(f"Nombre de la tarea: {task.name}")
+    print(type(task))
 
 
 task = Task("Homework", "Physics and math", 5)
+print(task.status)
 complete_task(task)
 
 # %%
@@ -48,6 +51,9 @@ def complete_task(task, note):
 
 # %%
 # note that task1, task2, and task3 are instances of Tasks
+task1 = Task("Homework", "Physics and math", 5)
+task2 = Task("tarea", "Physics and math", 5)
+task3 = Task("trabajo", "Physics and math", 5)
 # Use case 1
 complete_task(task1, "")
 
@@ -154,7 +160,10 @@ print(f"Return value of sort: {sort_return_value}")
 
 # %%
 # Expect error for the following code
-primes.sort().append(13)
+# primes.sort().append(13)
+primes.sort()
+primes.append(13)
+primes
 
 # %%
 
@@ -172,12 +181,12 @@ print(f"Appended: {appended_no_return}")
 
 
 def say_hello(person):
-    hello = f"Hello, {person}!"
-    return hello
+   # hello = f"Hello, {person}!"
+    return f"Hello, {person}!"
 
 
 greeting = say_hello("Rocky")
-
+greeting
 # %%
 
 
@@ -252,11 +261,23 @@ number = 1
 
 print(type(number))
 # output: <class 'int'>
+# %%
+print(type(number := 1))
+print(f"number ={number}\t{id(number)}")
+number = 2
+print(f"number ={number}\t{id(number)}")
+number2 = 1
+print(f"number2={number2}\t{id(number2)}")
+number2 = 2
+print(f"number2={number2}\t{id(number2)}")
+
 
 # %%
 number = "one"
 
 print(type(number))
+
+
 # output: <class 'str'>
 
 # %%
