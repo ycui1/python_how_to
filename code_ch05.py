@@ -175,7 +175,7 @@ tasks = [
     Task("Laundry", "Wash clothes", 3),
     Task("Museum", "Egypt exhibit", 4)
 ]
-
+tasks
 # %%
 for task_i in range(len(tasks)):
     task = tasks[task_i]
@@ -211,7 +211,7 @@ for task_i in range(len(tasks)):
 
 # %%
 for task, date, location in zip(tasks, dates, locations):
-    print(f"{task.title}: by {date} at {location}")
+    print(f"{task.title:<10}: by {date:^15} at {location:^15}")
 
 # %%
 completed_tasks = [
@@ -238,12 +238,21 @@ for task in tasks:
 # %%
 for task in filter(lambda x: x.urgency > 3, tasks):
     print(task)
+# %%
+tasks = ["task1", "task2", "task3"]
+for task in reversed(tasks):
+    print(task)
+
 
 #####################################################################################
 #
 # 5.4	Using optional statements within for and while loops
 #
 #####################################################################################
+# %%
+
+# %%
+
 # %%
 n = 1
 while n < 3:
@@ -273,6 +282,7 @@ for counter, task in enumerate(tasks, 1):
     print(f"---checking task {counter}: {task.title}")
     if (task.urgency == 5) and (first_urgent_task0 is None):  # A
         first_urgent_task0 = task
+        break
 
 print(f"***first urgent task: {first_urgent_task0}")
 
@@ -349,7 +359,7 @@ def show_for_else_rule(breaking_number):
 
 show_for_else_rule(1)
 
-show_for_else_rule(3)
+show_for_else_rule(5)
 
 # %%
 
@@ -393,7 +403,9 @@ tasks = [
 ]
 
 complete_tasks_with_break(7)
-
+print("--------------")
 complete_tasks_with_break(6)
-
+print("--------------")
 complete_tasks_with_break(5)
+
+# %%
