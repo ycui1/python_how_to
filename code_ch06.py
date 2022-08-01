@@ -263,13 +263,13 @@ print(type(number))
 # output: <class 'int'>
 # %%
 print(type(number := 1))
-print(f"number ={number}\t{id(number)}")
+print(f"number = {number}\tAdress: {id(number)}")
 number = 2
-print(f"number ={number}\t{id(number)}")
+print(f"number = {number}\tAdress: {id(number)}")
 number2 = 1
-print(f"number2={number2}\t{id(number2)}")
+print(f"number2= {number2}\tAdress: {id(number2)}")
 number2 = 2
-print(f"number2={number2}\t{id(number2)}")
+print(f"number2= {number2}\tAdress: {id(number2)}")
 
 
 # %%

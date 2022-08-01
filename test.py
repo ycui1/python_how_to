@@ -383,3 +383,65 @@ res = no_return()
 print(res)
 
 # %%
+
+
+def calculate_sum(a: int, b: int) -> int:
+    return a+b
+
+
+# calculate_sum()
+calculate_sum("2", 3)
+
+# %%
+
+
+def calculate(a: int, b: int) -> list[int, int, int, float]:
+    return [a+b, a-b, a*b, a/b]
+
+
+res = calculate(2, 3)
+print(res)
+
+
+# %%
+def sumar(*nums, k):
+    for item in nums:
+        print(item*k)
+
+
+sumar(1, 2, 3, 4, 5, k=10)
+# sumar(k=10, 1, 2, 3, 4, 5)
+
+# %%
+
+
+def sumar(*nums, k) -> list:
+    return [num*k for num in nums]
+
+
+print(sumar(1, 2, 3, 4, 5, k=10))
+
+# %%
+
+
+def hello(msg: str = ""):
+    print(msg)
+
+
+print(hello().__class__)
+print(hello().__init__)
+
+# %%
+
+
+def using_urgency_level(x): return x['urgency']
+
+
+tasks.sort(key=using_urgency_level, reverse=True)
+
+
+# %%
+def calcular(a, b): return [a+b, a-b, a*b, a/b]
+
+
+print(res := calcular(2, 3))
