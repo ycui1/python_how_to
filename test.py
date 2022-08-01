@@ -1,6 +1,8 @@
 # %%
-from ast import Try
+from ast import Try, match_case
 from collections import namedtuple
+
+from numpy import integer
 
 """ def cast_number(number_str):
     try:
@@ -34,7 +36,7 @@ print(sys.getsizeof(mi_Tupla))
 # 72
 # 56 """
 # %%
-""" 
+"""
 age = 50
 name = "Alex"
 my_tupla = (age, name)
@@ -70,7 +72,7 @@ print(my_tupla[1])
  """
 
 # %%
-""" 
+"""
 from collections import namedtuple
 task_list = ['Laundry', 'Wash clothes', 3]  # A
 task_tuple = ('Laundry', 'Wash clothes', 3)  # B
@@ -103,8 +105,8 @@ for task_text in task_data.split('\n'):  # A
     title, desc, urgency = task_text.split(',')  # B
     print(title, desc, urgency)
 
-    #task_nt = Task(title, desc, int(urgency))
-    #print(f"--> {task_nt}")
+    # task_nt = Task(title, desc, int(urgency))
+    # print(f"--> {task_nt}")
 
 for task_text in task_data.split('\n'):
     task_nt = Task._make(task_text.split(','))
@@ -115,7 +117,7 @@ x, y, z = data
 print(x, y, z) """
 
 # %%
-""" 
+"""
 
 from numpy import number
 my_set = {1, 2, 2, 3, 4, 5}
@@ -441,7 +443,77 @@ tasks.sort(key=using_urgency_level, reverse=True)
 
 
 # %%
-def calcular(a, b): return [a+b, a-b, a*b, a/b]
+def calculate(a, b): return [a+b, a-b, a*b, a/b]
 
 
-print(res := calcular(2, 3))
+print(res := calculate(2, 3))
+
+# %%
+
+nums = [(5, 4), (6, 4), (3, 2), (3, 10)]
+
+
+def my_sum(n): return n[0]+n[1]
+
+
+max_pair = max(nums, key=my_sum)
+print(max_pair)
+
+
+pow(4, 2)
+
+
+nums = [5, 4, 3, 6, 3, 2, 10]
+
+
+def max_square(n): return n*n
+
+
+max_square = max(nums, key=max_square)
+print(max_square)
+
+nums = [[5, 2], [6, 2], [3, 2], [8, 2]]
+
+nums = [5, 4, 3, 6, 3, 2, 10]
+
+max_square = max(nums, key=pow(2))
+print(max_square)
+
+# %%
+my_dict = {
+    "pair1": (2, 4),
+    "pair2": (4, 6),
+    (1, 2): "tuple"
+}
+
+my_dict
+
+# %%
+
+
+def get_mean(data):
+    return "mean of the data"
+
+
+def get_min(data):
+    return "min of the data"
+
+
+def get_max(data):
+    return "max of the data"
+
+
+def process_data(data, action):
+    match action:
+        case "mean":
+            processed = get_mean(data)
+        case "min":
+            processed = get_min(data)
+        case "max":
+            processed = get_max(data)
+        case _ :
+            processed = "error in action"
+
+    return processed
+
+# %%

@@ -53,6 +53,8 @@ def using_urgency_level(x): return x['urgency']
 
 tasks.sort(key=using_urgency_level, reverse=True)
 
+tasks
+
 # %%
 
 
