@@ -139,24 +139,24 @@ print(urgen_keys, urgen_values, urgen_items, sep="\n")
 # %%
 urgencies["Grocery Shopping"] = 4
 
-urgen_keys
+print(urgen_keys)
 # output: dict_keys(['Laundry', 'Homework', 'Museum', 'Grocery])
 
-urgen_values
+print(urgen_values)
 # output: dict_values([3, 5, 2, 4])
 
-urgen_items
+print(urgen_items)
 # output: dict_items([('Laundry', 3), ('Homework', 5), ('Museum', 2), ('Grocery, 4)])
 
 #%%
 urgencies = {"Laundry": 3, "Homework": 5, "Museum": 2}
 
 urgen_keys_list = list(urgencies.keys())
-urgen_keys_list
+print(urgen_keys_list)
 # output: ['Laundry', 'Homework', 'Museum']
 
 urgencies["Grocery"] = 4
-urgen_keys_list
+print(urgen_keys_list)
 # output: ['Laundry', 'Homework', 'Museum']
 
 #%%

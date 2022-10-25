@@ -12,6 +12,8 @@ urgency = 5
 # desired output:
 Name: Homework; Urgency Level: 5
 
+# Note: the above line isn't supposed to run as Python code, as it's text output.
+
 #%%
 task = "Name: " + name + "; Urgency Level: " + str(urgency)
 
@@ -207,6 +209,22 @@ print(number_list)
 # 2.3	How do I join and split strings?
 #
 #####################################################################################
+# %%
+# initial input
+fruit0 = "apple"
+fruit1 = "banana"
+fruit2 = "orange"
+
+# desired output
+liked_fruits = "apple, banana, orange"
+
+# %%
+# initial input
+visited_countries = "United States, China, France, Canada"
+
+# desired output
+countries = ["United States", "China", "France", "Canada"]
+
 
 # %%
 style_settings = "font-size=large, " "font=Arial, " "color=black, " "align=center"

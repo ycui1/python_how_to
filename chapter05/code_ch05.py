@@ -53,6 +53,56 @@ iter([1, 2, 3])
 # output: <list_iterator object at 0x000001F232A44700>
 
 
+#%%
+def is_iterable(obj):
+    try:
+        _ = iter(obj)   #A
+    except TypeError:
+        print(type(obj), "is not an iterable")
+    else:
+        print(type(obj), "is an iterable")    
+
+is_iterable(5)
+# output: <class 'int'> is not an iterable
+
+is_iterable([1, 2, 3])
+# output: <class 'list'> is an iterable
+
+#%%
+list_obj = [1, 2, 3]
+
+tuple_obj = (404, "Connection Error")
+
+dict_obj = {"one": 1, "two": 2}
+
+set_obj = {1, 2, 3}
+
+#%%
+integers_list = list(range(10))   #A
+assert integers_list == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+integers_tuple = tuple(integers_list)   #B
+assert integers_tuple == (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+dict_items = [("zero", 0), ("one", 1), ("two", 2)]
+integers_dict = dict(dict_items)   #C
+assert integers_dict == {'zero': 0, 'one': 1, 'two': 2}
+
+even_numbers = (-2, 4, 0, 2, 4, 2)
+unique_evens = set(even_numbers)   #D
+assert unique_evens == {0, 2, 4, -2}
+
+#%%
+numbers_str = ["1.23", "4.56", "7.89"]
+
+numbers_float = list(map(float, numbers_str))
+
+assert numbers_float == [1.23, 4.56, 7.89]
+
+#%%
+zipped_tasks = dict(zip(id_numbers, titles))
+
+assert zipped_tasks == {101: "Laundry", 102: "Homework", 103: "Soccer"}
 
 #####################################################################################
 #

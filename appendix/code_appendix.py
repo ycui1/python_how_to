@@ -1,9 +1,13 @@
-#%% Answer to section 2.1
-selected_a = "orange"
-selected_b = "apple"
+######################################################################################
+# Chapter 2
+######################################################################################
 
-selected = f"Selected fruits: {{{selected_a}, {selected_b}}}"
-assert selected == "Selected fruits: {orange, apple}"
+#%% Answer to section 2.1
+product = {"name": "Vacuum", "price": 130.675}
+
+product_tag = f"{product['name']}: {{{product['price']:.2f}}}"
+
+assert product_tag == "Vacuum: {130.68}"
 
 #%% Answer to section 2.2
 x = input("What's today's temperature in your area?")
@@ -45,7 +49,7 @@ splitted = re.split(pattern, data_to_split)
 print(splitted)
 # output: ['abc', 'abc', 'abc', 'abc', 'abc']
 
-# %%
+# %% Answer to section 2.4
 text_data = """101, Homework; Complete physics and math
 some random nonsense
 102, Laundry; Wash all the clothes today
@@ -62,6 +66,19 @@ print(splitted)
 pattern = r"(?<!\d)(\d{3}), (\w+); (.+)\n"
 splitted = re.findall(pattern, text_data)
 print(splitted)
+
+
+
+
+
+
+
+######################################################################################
+# Chapter 3
+######################################################################################
+
+#%% Answer to section 3.1
+# No code is needed, see the discussion in Appendix F
 
 #%% Answer to section 3.2
 tasks = [
@@ -114,6 +131,16 @@ assert ({1, 2, 3} and {4, 5, 6}) == {4, 5, 6}
 assert (False and []) == False
 assert ("Hello" and "World") == "World"
 
+
+
+
+
+
+
+######################################################################################
+# Chapter 4
+######################################################################################
+
 #%% Answer to section 4.1
 num_list = [1, 2, 3, 4]
 num_tuple = (1, 2, 3, 4)
@@ -125,6 +152,7 @@ print(num_str[:2])
 
 num_range = range(1, 5)
 print(num_range[:2])
+
 # %% Answer to section 4.2
 revenue_by_month = [95, 100, 80, 93, 92, 110, 102, 88, 96, 98, 115, 120]
 assert revenue_by_month[-2] == revenue_by_month[len(revenue_by_month) - 2]
@@ -159,22 +187,32 @@ print(a, b, c, d)
 numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
 print(numbers * 3)
 
-numbers_multipled = []
+numbers_multiplied = []
 for number_list in numbers:
     embedded_list = []
     for number in number_list:
         number_multiplied = number * 3
         embedded_list.append(number_multiplied)
-    numbers_multipled.append(embedded_list)
+    numbers_multiplied.append(embedded_list)
 
-print(numbers_multipled)
+print(numbers_multiplied)
 
 numbers_multiplied2 = [x*3 for number_list in numbers for x in number_list]
-assert number_multiplied == number_multiplied
+assert numbers_multiplied == numbers_multiplied2
 
 import numpy as np
 numbers_array = np.array(numbers)
 print(numbers_array * 3)
+
+
+
+
+
+
+######################################################################################
+# Chapter 5
+######################################################################################
+
 # %% Answer to section 5.1
 numbers_int = [1, 2, 3]
 numbers_word = ("one", "two", "three")
@@ -239,6 +277,15 @@ for task in tasks:
         break
 
 print(first_urgent_task2)
+
+
+
+
+
+
+######################################################################################
+# Chapter 6
+######################################################################################
 
 #%% Answer to section 6.1
 from datetime import datetime
@@ -310,6 +357,15 @@ def quotient(dividend, divisor, taking_int=False):
         result = int(result)
     return result
 
+
+
+
+
+
+######################################################################################
+# Chapter 7
+######################################################################################
+
 #%% Answer to section 7.1
 add_five = lambda x: x + 5
 print(add_five.__name__)
@@ -317,6 +373,9 @@ print(add_five.__name__)
 def add_ten(x):
     return x + 10
 print(add_ten.__name__)
+
+#%% Answer to section 7.2
+# No code is needed. Please refer to Appendix F for additional information.
 
 #%% Answer to section 7.3
 import functools
@@ -371,6 +430,16 @@ print(run_stats_model_a.func)
 print(run_stats_model_a.args)
 
 print(run_stats_model_a.keywords)
+
+
+
+
+
+
+######################################################################################
+# Chapter 8
+######################################################################################
+
 # %% Answer to section 8.1
 class Task:
     def __init__(self, title, desc, urgency, tags=None):
@@ -441,6 +510,15 @@ class Supervisor:
     def __init__(self, name, employee_id, subordinates):
         super().__init__(name, employee_id)
         self.subordinates = subordinates
+
+
+
+
+
+
+######################################################################################
+# Chapter 9
+######################################################################################
 
 #%% Answer to section 9.1
 from enum import Enum
@@ -552,6 +630,15 @@ class ClientV2:
     def initials(self):
         return self.first_name[0] + self.middle_initial + self.last_name[0]
 
+
+
+
+
+
+######################################################################################
+# Chapter 10
+######################################################################################
+
 #%% Answer to section 10.1
 from collections.abc import Iterable
 def is_iterable(obj):
@@ -638,6 +725,15 @@ def calculate_sum(n):
 print(calculate_sum.__name__)
 
 
+
+
+
+
+
+######################################################################################
+# Chapter 11
+######################################################################################
+
 #%% Answer to section 11.1
 
 list_data = [
@@ -715,11 +811,20 @@ def select_recent_files_24h(directory):
     time_cutoff = current_time - 24 * 3600
     good_files = []
     for file_path in dir_path.glob("*"):
-        file_time = file_path.stat().st_birthtime
+        file_time = file_path.stat().st_mtime
         if time_cutoff <= file_time <= current_time:
             good_files.append(file_path)
 
     return good_files
+
+
+
+
+
+
+######################################################################################
+# Chapter 12
+######################################################################################
 
 #%% Answer to section 12.1
 import logging
@@ -798,6 +903,12 @@ create_task("Laundry")
 
 
 
+
+
+######################################################################################
+# Chapter 13
+######################################################################################
+
 #%%
 # Answer to Section 13.1
 class Task:
@@ -866,6 +977,17 @@ class Task:
         raise TypeError("This is a TypeError")
         # the next return statement will be skipped due to raising an exception
         return displayed_text
+
+
+
+
+
+
+
+######################################################################################
+# Chapter 14
+######################################################################################
+
 
 #%% Answer to section 14.2
 # the following function is taken from the Task class, expects it not to work by itself

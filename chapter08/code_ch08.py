@@ -81,6 +81,8 @@ Task = namedtuple("Task", "title desc urgency")
 
 task = Task("Laundry", "Wash clothes", 3)
 
+print(task)
+# output: Task(title='Laundry', desc='Wash clothes', urgency=3)
 
 #%%
 class Task:
@@ -235,7 +237,12 @@ print(task.__dict__)
 #####################################################################################
 #%%
 class Task:
-    # __init__ stays the same, except setting self.note = ""
+    def __init__(self, title, desc, urgency):
+        self.title = title
+        self.desc = desc
+        self.urgency = urgency
+        self._status = "created"
+        self.note = ""
 
     def complete(self, note = ""):
         self.status = "completed"
@@ -293,7 +300,11 @@ task.status = "completed"
 
 #%%
 class Task:
-    # __init__ stays the same
+    def __init__(self, title, desc, urgency):
+        self.title = title
+        self.desc = desc
+        self.urgency = urgency
+        self._status = "created"
 
     @property
     def status(self):
@@ -311,6 +322,7 @@ class Task:
 
 
 #%%
+task = Task("Laundry", "Wash clothes", 3)
 task.status = "completed"
 # output: task status set to completed
 
@@ -339,6 +351,7 @@ class Task:
 
 
 #%%
+task = Task("Laundry", "Wash clothes", 3) 
 print(task)
 # output: Laundry: Wash clothes, urgency level 3
 
@@ -362,7 +375,13 @@ task
 
 #%%
 class Task:
-    # __init__ and __str__ stay the same
+    def __init__(self, title, desc, urgency):
+        self.title = title
+        self.desc = desc
+        self.urgency = urgency
+
+    def __str__(self):
+        return f"{self.title}: {self.desc}, urgency level {self.urgency}"
 
     def __repr__(self):
         return f"Task({self.title!r}, {self.desc!r}, {self.urgency})"    #A

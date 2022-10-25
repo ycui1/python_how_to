@@ -584,7 +584,12 @@ print(demo_output)
 
 #%%
 class Student:
-    # __init__ stays the same
+    def __init__(self, first_name, last_name, student_id):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.student_id = student_id
+        self.account = Account(self.student_id)
+        self.demographics = Demographics(self.student_id)
 
     def get_account_balance(self):
         return self.account.balance

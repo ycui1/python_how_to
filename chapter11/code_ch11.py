@@ -414,5 +414,5 @@ readable_time = time.ctime(modified_time)   #B
 
 print(f"Modification time: {modified_time} -> {readable_time}")
 
-# output: Creation time: 1652123144.9999998 -> Mon May  9 14:05:44 2022    #C
+# output: Modification time: 1652123144.9999998 -> Mon May  9 14:05:44 2022    #C
 
