@@ -692,13 +692,13 @@ print(new_task.tags)
 
 #%% Answer to section 10.4
 import random
-whether = "sunny"
+weather = "sunny"
 if random.randint(1, 100) % 2:
-    whether = "cloudy"
+    weather = "cloudy"
 else:
-    whether = "rainy"
+    weather = "rainy"
 
-print(whether)
+print(weather)
 
 #%% Answer to section 10.5
 import time
